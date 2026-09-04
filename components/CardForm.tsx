@@ -29,7 +29,7 @@ export default function CardForm() {
     try {
       const shortId = await createCard({ concept: 'seduction', text });
       const baseUrl = process.env.NEXT_PUBLIC_APP_URL || window.location.origin;
-      const url = `${baseUrl}/c/${shortId}`;
+      const url = `${baseUrl}/kingbad/${shortId}`;
       setGeneratedUrl(url);
       setText('');
       setCopied(false);
