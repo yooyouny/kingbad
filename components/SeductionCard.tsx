@@ -14,15 +14,9 @@ export default function SeductionCard({ text }: SeductionCardProps) {
   const [isOpened, setIsOpened] = useState(false);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
+  const [soundPlayed, setSoundPlayed] = useState(false);
 
   useEffect(() => {
-    // Play sound
-    if (audioRef.current) {
-      audioRef.current.play().catch(() => {
-        // Audio autoplay failed - browser policy
-      });
-    }
-
     // Start animation
     const timer = setTimeout(() => {
       setIsOpened(true);
@@ -34,6 +28,14 @@ export default function SeductionCard({ text }: SeductionCardProps) {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
+
+      // Play sound on first user interaction
+      if (!soundPlayed && isOpened && audioRef.current) {
+        audioRef.current.play().catch(() => {
+          console.log('오디오 재생 재시도...');
+        });
+        setSoundPlayed(true);
+      }
 
       const rect = containerRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -54,7 +56,7 @@ export default function SeductionCard({ text }: SeductionCardProps) {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [soundPlayed, isOpened]);
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-b from-rose-900 via-red-900 to-pink-900 flex items-center justify-center overflow-hidden">
@@ -63,7 +65,7 @@ export default function SeductionCard({ text }: SeductionCardProps) {
       <RosePetals />
 
       {/* Sound */}
-      <audio ref={audioRef} src="/sounds/seduction.mp3" autoPlay />
+      <audio ref={audioRef} src="/sounds/seduction.mp3" />
 
       {/* Background Image - Man with Rose */}
       <motion.div
