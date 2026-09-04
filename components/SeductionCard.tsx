@@ -63,7 +63,7 @@ export default function SeductionCard({ text }: SeductionCardProps) {
       <RosePetals />
 
       {/* Sound */}
-      <audio ref={audioRef} src="/sounds/seduction.mp3" />
+      <audio ref={audioRef} src="/sounds/유혹.mp3" autoPlay />
 
       {/* Background Image - Man with Rose */}
       <motion.div
