@@ -17,6 +17,9 @@ export default function SeductionCard({ text }: SeductionCardProps) {
   const [soundPlayed, setSoundPlayed] = useState(false);
 
   useEffect(() => {
+    // Reset sound state when component mounts or card is opened
+    setSoundPlayed(false);
+
     // Start animation
     const timer = setTimeout(() => {
       setIsOpened(true);
