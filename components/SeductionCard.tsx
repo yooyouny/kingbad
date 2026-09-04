@@ -28,14 +28,28 @@ export default function SeductionCard({ text }: SeductionCardProps) {
     return () => clearTimeout(timer);
   }, []);
 
+  // Play sound when card opens
+  useEffect(() => {
+    if (isOpened && !soundPlayedRef.current && audioRef.current) {
+      soundPlayedRef.current = true;
+      // Delay slightly to ensure component is fully rendered
+      const audioTimer = setTimeout(() => {
+        audioRef.current?.play().catch(() => {
+          console.log('오디오 재생 실패, 마우스 움직임 대기 중...');
+        });
+      }, 100);
+      return () => clearTimeout(audioTimer);
+    }
+  }, [isOpened]);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
 
-      // Play sound on first user interaction
+      // Fallback: Play sound on mouse move if not played yet
       if (!soundPlayedRef.current && isOpened && audioRef.current) {
         audioRef.current.play().catch(() => {
-          console.log('오디오 재생 재시도...');
+          console.log('마우스 움직임으로 오디오 재생 시도...');
         });
         soundPlayedRef.current = true;
       }
@@ -59,7 +73,7 @@ export default function SeductionCard({ text }: SeductionCardProps) {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [isOpened]);
+  }, []);
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-b from-rose-900 via-red-900 to-pink-900 flex items-center justify-center overflow-hidden">
