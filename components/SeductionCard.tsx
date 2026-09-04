@@ -32,8 +32,10 @@ export default function SeductionCard({ text }: SeductionCardProps) {
   const handlePlaySound = () => {
     if (!soundPlayedRef.current && audioRef.current) {
       soundPlayedRef.current = true;
+      // Unmute and play
+      audioRef.current.muted = false;
       audioRef.current.play().catch((err) => {
-        console.log('오디오 재생 실패:', err);
+        console.log('오디오 재생:', err);
       });
     }
   };
@@ -75,7 +77,7 @@ export default function SeductionCard({ text }: SeductionCardProps) {
       <RosePetals />
 
       {/* Sound */}
-      <audio ref={audioRef} src="/sounds/seduction.mp3" />
+      <audio ref={audioRef} src="/sounds/seduction.mp3" muted autoPlay />
 
       {/* Background Image - Man with Rose */}
       <motion.div
