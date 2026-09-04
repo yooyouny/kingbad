@@ -17,8 +17,7 @@ export function validateText(text: string): boolean {
   if (!text || text.length === 0) return false;
   if (text.length > MAX_TEXT_LENGTH) return false;
 
-  const koreanRegex = /^[가-힣\s]+$/;
-  return koreanRegex.test(text);
+  return true;
 }
 
 export function validateConcept(concept: string): concept is CardConcept {

@@ -78,7 +78,7 @@ export default function CardForm() {
                 type="text"
                 value={text}
                 onChange={(e) => setText(e.target.value.slice(0, MAX_TEXT_LENGTH))}
-                placeholder="텍스트 입력 (한글 10자)"
+                placeholder="텍스트 입력 (10자)"
                 className="w-full px-4 py-3 border-2 border-pink-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white/90 text-gray-800 placeholder-gray-500"
                 maxLength={MAX_TEXT_LENGTH}
               />

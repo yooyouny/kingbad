@@ -11,14 +11,14 @@ interface SeductionCardProps {
 export default function SeductionCard({ text }: SeductionCardProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const soundPlayedRef = useRef(false);
   const [isOpened, setIsOpened] = useState(false);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
-  const [soundPlayed, setSoundPlayed] = useState(false);
 
   useEffect(() => {
-    // Reset sound state when component mounts or card is opened
-    setSoundPlayed(false);
+    // Reset sound flag when component mounts
+    soundPlayedRef.current = false;
 
     // Start animation
     const timer = setTimeout(() => {
@@ -33,11 +33,11 @@ export default function SeductionCard({ text }: SeductionCardProps) {
       if (!containerRef.current) return;
 
       // Play sound on first user interaction
-      if (!soundPlayed && isOpened && audioRef.current) {
+      if (!soundPlayedRef.current && isOpened && audioRef.current) {
         audioRef.current.play().catch(() => {
           console.log('오디오 재생 재시도...');
         });
-        setSoundPlayed(true);
+        soundPlayedRef.current = true;
       }
 
       const rect = containerRef.current.getBoundingClientRect();
@@ -59,7 +59,7 @@ export default function SeductionCard({ text }: SeductionCardProps) {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [soundPlayed, isOpened]);
+  }, [isOpened]);
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-b from-rose-900 via-red-900 to-pink-900 flex items-center justify-center overflow-hidden">
