@@ -28,26 +28,25 @@ export default function SeductionCard({ text }: SeductionCardProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  // Play sound on first user interaction
-  const handlePlaySound = () => {
-    if (!soundPlayedRef.current && audioRef.current) {
-      soundPlayedRef.current = true;
-      // Unmute and play
-      audioRef.current.muted = false;
-      audioRef.current.play().catch((err) => {
-        console.log('오디오 재생:', err);
-      });
-    }
-  };
+  // Play audio on first document click
+  useEffect(() => {
+    const handleDocumentClick = () => {
+      if (!soundPlayedRef.current && audioRef.current) {
+        soundPlayedRef.current = true;
+        audioRef.current.muted = false;
+        audioRef.current.play().catch((err) => {
+          console.log('오디오 재생 시도:', err);
+        });
+      }
+    };
+
+    document.addEventListener('click', handleDocumentClick);
+    return () => document.removeEventListener('click', handleDocumentClick);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
-
-      // Play sound on mouse move if not played yet
-      if (isOpened) {
-        handlePlaySound();
-      }
 
       const rect = containerRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -68,7 +67,7 @@ export default function SeductionCard({ text }: SeductionCardProps) {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [isOpened]);
+  }, []);
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-b from-rose-900 via-red-900 to-pink-900 flex items-center justify-center overflow-hidden">
@@ -77,7 +76,7 @@ export default function SeductionCard({ text }: SeductionCardProps) {
       <RosePetals />
 
       {/* Sound */}
-      <audio ref={audioRef} src="/sounds/seduction.mp3" muted autoPlay />
+      <audio ref={audioRef} src="/sounds/seduction.mp3" muted />
 
       {/* Background Image - Man with Rose */}
       <motion.div
