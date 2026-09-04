@@ -1,36 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+> React 19 / TypeScript / Next.js 14 / Framer Motion / Three.js / Tailwind CSS / Supabase / Howler.js / Vercel
+<img width="368" height="424" alt="나를공격할때" src="https://github.com/user-attachments/assets/1a8b6cf9-8038-4083-8ba1-ead9aa8f89af" />
+<img width="1253" height="670" alt="언제나킹받에접속" src="https://github.com/user-attachments/assets/ed431777-188a-4f97-9b91-969702351431"/>
+<img width="1266" height="667" alt="카드를생성" src="https://github.com/user-attachments/assets/26cf0568-5018-43f0-ad85-7a5a362dcf20" />
+<img width="453" height="536" alt="공격개시" src="https://github.com/user-attachments/assets/48aaa72a-2b31-4b1f-b35f-e4013ca148ef" />
+<img width="1221" height="684" alt="사운드재생과킹받게만들기완성" src="https://github.com/user-attachments/assets/c1a8ced7-79d8-4ac3-9175-af5aafed290a" />
+> 무료 호스팅 만료(또는 개발 종료)로 인해 배포는 중단
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
